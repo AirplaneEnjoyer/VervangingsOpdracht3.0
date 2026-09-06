@@ -1,21 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NewMonoBehaviourScript : MonoBehaviour
-
 {
-    [SerializeField] private PlayerInput _playerInput;
-    [SerializeField] private Rigidbody _rb;
-    [SerializeField] private float _speed;
+    [SerializeField] private float _speed = 5f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public void MovePlayer(Vector2 direction)
-    {
-        transform.position += new Vector3(direction.x, direction.y, 0) * _speed * Time.deltaTime;
-    }
+    [SerializeField] private Rigidbody2D rb2d;
+    [SerializeField] private SpriteRenderer sr;
+
+    private Vector2 movement;
 
     // Update is called once per frame
-    private void start()
+    private void Awake()
     {
-        _playerInput.OnPlayerInputRecieved.AddListener(MovePlayer);
+        rb2d = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+    }
+
+    private void Update()
+    {
+        movement.x = Input.GetAxisRaw("Horizontal");
+    }
+
+    private void FixedUpdate()
+    {
+        rb2d.MovePosition(rb2d.position + movement * _speed * Time.fixedDeltaTime);
     }
 }
