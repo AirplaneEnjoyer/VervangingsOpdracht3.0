@@ -33,6 +33,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (FindObjectsOfType<Enemy>().Length == 0)
+        {
+            SpawnEnemies();
+
+        }
+    }
+
+
     private void MoveEnemies()
     {
         foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
