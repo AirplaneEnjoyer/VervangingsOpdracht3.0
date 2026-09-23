@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerProjectile : MonoBehaviour
 {
     [SerializeField] private float speed = 1.5f;
+    [SerializeField] GameObject PlayerBulletPrefab;
 
     private void Start()
     {
@@ -24,7 +25,6 @@ public class PlayerProjectile : MonoBehaviour
             PlayerMovement playerController = player.GetComponent<PlayerMovement>();
             Destroy(collision.gameObject);
         }
-        Destroy(gameObject);
     }
 
     private void AddCollider()
