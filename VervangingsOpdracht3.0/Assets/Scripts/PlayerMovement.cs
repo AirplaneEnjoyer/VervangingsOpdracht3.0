@@ -9,8 +9,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb2d;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private GameObject playerProjectile;
+    [SerializeField] private float shootCooldown = 0.5f;
 
     private Vector2 movement;
+    private float lastShootTime = 0f;
 
     // Update is called once per frame
     private void Awake()
@@ -36,9 +38,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Shoot()
     {
-        if (GameObject.FindGameObjectsWithTag("PlayerProjectile").Length == 0)
+        if (Time.time > lastShootTime + shootCooldown)
         {
-            Instantiate(playerProjectile, transform.position + new Vector3(0, 0.4f, 0), Quaternion.identity);
+            Instantiate(playerProjectile, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+            lastShootTime = Time.time;
         }
     }
+
 }
