@@ -49,6 +49,15 @@ public class Enemy : MonoBehaviour
         {
             Vector3 CurrentPos = enemy.transform.position;
             enemy.transform.position = CurrentPos + new Vector3(horizontalMoveAmount, 0, 0);
+            // hier checken voor specifieke posities en dan de richting omdraaien
+            float leftBoundary = -60f;
+            float rightBoundary = 15f;
+
+            if (CurrentPos.x <= leftBoundary || CurrentPos.x >= rightBoundary)
+            {
+                horizontalMoveAmount = -horizontalMoveAmount;
+            }
+
         }
 
     }
