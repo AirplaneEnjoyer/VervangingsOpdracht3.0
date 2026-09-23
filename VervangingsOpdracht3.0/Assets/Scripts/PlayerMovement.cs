@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject playerProjectile;
     [SerializeField] private float shootCooldown = 0.5f;
 
+    public int lives = 3;
+    public int score = 0;
+
     private Vector2 movement;
     private float lastShootTime = 0f;
 
@@ -45,4 +48,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void Respawn()
+    {
+        transform.position = new Vector3(0, -4.5f, 0);
+    }
 }
