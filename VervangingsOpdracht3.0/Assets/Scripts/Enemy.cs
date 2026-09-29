@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -14,6 +15,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] GameObject enemyPrefab;
 
+    private Dictionary<GameObject, float> enemyDirections = new Dictionary<GameObject, float>();
     private bool hasCollided = false;
 
     private void Start()
@@ -42,24 +44,32 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
+    
     private void MoveEnemies()
     {
+        
         foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
-            Vector3 CurrentPos = enemy.transform.position;
-            enemy.transform.position = CurrentPos + new Vector3(horizontalMoveAmount, 0, 0);
-            // hier checken voor specifieke posities en dan de richting omdraaien
-            float leftBoundary = -60f;
-            float rightBoundary = 15f;
-
-            if (CurrentPos.x <= leftBoundary || CurrentPos.x >= rightBoundary)
+            if (!enemyDirections.ContainsKey(enemy))
             {
-                horizontalMoveAmount = -horizontalMoveAmount;
+                enemyDirections.Add(enemy, horizontalMoveAmount);
             }
 
-        }
+            float direction = enemyDirections[enemy];
 
+            Vector3 currentPos = enemy.transform.position;
+
+            currentPos.x += direction;
+            enemy.transform.position = currentPos;
+
+            float leftBoundary = -10f;
+            float rightBoundary = 10f;
+
+            if (currentPos.x <= leftBoundary || currentPos.x >= rightBoundary)
+            {
+                enemyDirections[enemy] = -direction;
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
