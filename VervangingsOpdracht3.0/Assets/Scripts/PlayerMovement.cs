@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -48,8 +49,23 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        lives -= 1;
+        if (lives == 0)
+        {
+            SceneManager.LoadSceneAsync("GameOver");
+        }
+        else
+        {
+            Respawn();
+        }
+    }
+
     private void Respawn()
     {
+        foreach (var bullet in FindObjectsOfType<EnemyProjectile>())
+        
         transform.position = new Vector3(0, -4.5f, 0);
     }
 }
