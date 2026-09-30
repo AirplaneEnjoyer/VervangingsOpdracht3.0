@@ -66,6 +66,6 @@ public class PlayerMovement : MonoBehaviour
     {
         foreach (var bullet in FindObjectsOfType<EnemyProjectile>())
         
-        transform.position = new Vector3(0, -4.5f, 0);
+        transform.position = new Vector3(0, -6.16f, 0);
     }
 }

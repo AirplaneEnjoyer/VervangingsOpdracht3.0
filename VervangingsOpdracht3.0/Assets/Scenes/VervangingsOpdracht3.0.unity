@@ -189,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7123071527034775529, guid: ecfe6ff7ce6652a45a01cf9bb2517afd, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -8401590038720646151, guid: ecfe6ff7ce6652a45a01cf9bb2517afd, type: 3}
@@ -684,7 +684,7 @@ Transform:
   m_GameObject: {fileID: 1308035190}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: -6.16, z: 0}
+  m_LocalPosition: {x: 0, y: -6.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -759,11 +759,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3772487061017569383, guid: b0e64944d58bffa4baa5997d66e258db, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.51
+      value: 6.7
       objectReference: {fileID: 0}
     - target: {fileID: 3772487061017569383, guid: b0e64944d58bffa4baa5997d66e258db, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.07
+      value: -9.75
       objectReference: {fileID: 0}
     - target: {fileID: 3772487061017569383, guid: b0e64944d58bffa4baa5997d66e258db, type: 3}
       propertyPath: m_LocalPosition.z
