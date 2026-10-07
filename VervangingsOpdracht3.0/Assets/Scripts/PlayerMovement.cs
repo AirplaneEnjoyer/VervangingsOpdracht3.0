@@ -13,12 +13,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float shootCooldown = 0.5f;
 
     public int lives = 3;
+    public int maxLives = 3;  // Max health for healing cap
     public int score = 0;
 
     private Vector2 movement;
     private float lastShootTime = 0f;
 
-    // Update is called once per frame
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -51,21 +51,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        lives -= 1;
-        if (lives == 0)
+        // STRICT CHECK: Only lose lives if the colliding object specifically has the EnemyProjectile script
+        if (collision.GetComponent<EnemyProjectile>() != null)
         {
-            SceneManager.LoadSceneAsync("GameOver");
-        }
-        else
-        {
-            Respawn();
+            TakeDamage();
         }
     }
 
-    private void Respawn()
+    private void TakeDamage()
     {
-        foreach (var bullet in FindObjectsOfType<EnemyProjectile>())
-        
-        transform.position = new Vector3(0, -6.16f, 0);
+        lives -= 1;
+        Debug.Log("Player hit by damage projectile! Remaining lives: " + lives);
+
+        if (lives <= 0)
+        {
+            SceneManager.LoadSceneAsync("GameOver");
+        }
     }
 }
