@@ -7,7 +7,6 @@ public class EnemyProjectile : MonoBehaviour
 
     private void Start()
     {
-        // Automatically destroy bullet after lifetime seconds if it misses
         Destroy(gameObject, lifetime);
     }
 
@@ -20,8 +19,6 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // Destroy projectile on impact
-            // If your player script handles damage via script components, it will detect this projectile
             Destroy(gameObject);
         }
     }

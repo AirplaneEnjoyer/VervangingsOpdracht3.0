@@ -7,11 +7,11 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] private GameObject healthyEnemyProjectile;
 
     [Header("Raycast & Layers")]
-    [SerializeField] private LayerMask enemyLayer; // Set this to your Enemy layer in Inspector
+    [SerializeField] private LayerMask enemyLayer;
 
     [Header("Shooting Timers")]
-    [SerializeField] private float minShootDelay = 3f; // Minimum seconds between shots
-    [SerializeField] private float maxShootDelay = 7f; // Maximum seconds between shots
+    [SerializeField] private float minShootDelay = 3f;
+    [SerializeField] private float maxShootDelay = 7f;
 
     private float nextShootTime;
 
@@ -24,27 +24,22 @@ public class EnemyShoot : MonoBehaviour
     {
         if (Time.time >= nextShootTime)
         {
-            // ALWAYS reset the timer first so the loop keeps running
             SetNextShootTime();
 
-            // Try to shoot if no enemy is below
             TryShoot();
         }
     }
 
     private void SetNextShootTime()
     {
-        // Pick a new random delay for the next attempt
         nextShootTime = Time.time + Random.Range(minShootDelay, maxShootDelay);
     }
 
     private void TryShoot()
     {
-        // If an enemy is below, skip this attempt, but the timer is already reset for next time
         if (IsEnemyBelow())
             return;
 
-        // 50% chance for regular projectile, 50% chance for healthy projectile
         float rand = Random.value;
 
         if (rand < 0.5f)

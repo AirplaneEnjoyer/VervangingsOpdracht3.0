@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float shootCooldown = 0.5f;
 
     public int lives = 3;
-    public int maxLives = 3;  // Max health for healing cap
+    public int maxLives = 3;
     public int score = 0;
 
     private Vector2 movement;
@@ -51,7 +51,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // STRICT CHECK: Only lose lives if the colliding object specifically has the EnemyProjectile script
         if (collision.GetComponent<EnemyProjectile>() != null)
         {
             TakeDamage();
